@@ -8,8 +8,8 @@ export class AppConfig {
 }
 
 export const APP_DI_CONFIG: AppConfig = {
-  apiEndpoint: 'http://192.168.43.7:3000/api'
-   // apiEndpoint: 'https://poc-wms-server.herokuapp.com/api'
+  // apiEndpoint: 'http://192.168.43.7:3000/api'
+   apiEndpoint: 'https://briot-asset-server.herokuapp.com/api'
 };
 
 @NgModule({
