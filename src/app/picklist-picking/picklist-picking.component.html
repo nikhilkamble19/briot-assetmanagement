@@ -1,0 +1,67 @@
+<div class="container">
+  <h3>Pick List Picking</h3>
+  <hr>
+  <form (ngSubmit)="onScan();" #pickingForm="ngForm">
+
+    <div class="form-group">
+            <label for="display_name">Select Pick List</label>
+            <select name="display_name"
+                class="form-control"
+                [(ngModel)]="model.display_name"
+                #display_name="ngModel"
+                (change)="onChangePartNumber($event)"
+                required>
+
+                <option *ngFor="let m of picklistMap" [ngValue]="m">{{m.display_name}}</option>
+            </select>
+            <div [hidden]="display_name.valid || display_name.pristine"
+                class="alert alert-danger">
+                Picklist is required
+            </div>
+        </div>
+
+    <div class="form-group">
+      <label for="scanbarcode">Please Scan</label>
+      <input type="text" class="form-control"
+              name="scanbarcode"
+              [(ngModel)]="model.scanbarcode"
+              #scanbarcode="ngModel"
+              required>
+    </div>
+    <button type="submit" class="btn btn-success">Scan</button>
+  </form>
+
+  <br>
+
+    <form (ngSubmit)="onSubmit();pickingForm.reset();" #pickingForm="ngForm">
+      <div class="table-responsive" style="font-size:14px;" *ngIf="this.picklistDisplay.length > 0">
+        <div style="font-family: Calibri; font-size: 200%;">{{this.counter}}/{{this.picklistDisplay.length}} </div>
+          <table class="table table-bordered table-striped table-highlight;" >
+            <thead>
+              <tr>
+                <th>Part Id</th>
+                <th>Part Number</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+          <tbody>
+            <tr *ngFor="let data of picklistDisplay">
+              <td>
+                {{data.barcode}} 
+                <span *ngIf="data.check" style="font-family: wingdings; font-size: 200%;">
+                  &#252;
+                </span>
+              </td>
+              <td>
+                {{data.part.part_number}}
+              </td>
+              <td>
+                {{data.location_id.display_name}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </form>
+</div>

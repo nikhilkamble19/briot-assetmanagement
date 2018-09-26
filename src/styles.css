@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+.mydp {
+    border: none !important;
+}
+
+ng-select {
+    padding: 0px 0px !important;
+    border: none !important;
+}
+
+.selbtngroup, .selectiongroup > input {
+}
+
+select {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html, body, select, option, .btn, input, .dropdown-item {
+    font-size: 13pt !important;
+}
+
+.navbar-brand {
+    font-size: 13pt !important;
+}
+
+body {
+     padding-top: 70px;
+     padding-bottom: 70px;
+}
+
+.ui-select-match, ui-select-toggle, .btn-default {
+    background-color:white !important;
+    color:#555 !important;
+    border: 1px solid #dce4ec;
+    vertical-align: center;
+    text-align: left;
+}

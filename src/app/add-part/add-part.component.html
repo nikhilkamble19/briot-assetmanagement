@@ -1,0 +1,53 @@
+<div class="container">
+  <h3>Add Part</h3>
+  <hr> 
+  <form (ngSubmit)="onSubmit(part_number.value, description.value, data_matrix_code.values); partForm.reset();" #partForm="ngForm">
+
+		<div class="form-group">
+      <label for="part_number">Part Number</label>
+      <input type="text" class="form-control"
+            name="part_number"
+            [(ngModel)]="model.part_number"
+            #part_number="ngModel" 
+            pattern="[a-zA-Z0-9/\s]+"
+            autofocus
+            required>
+      <div [hidden]="part_number.valid || part_number.pristine"
+            class="alert alert-danger">
+            Part Number is required/Invalid Part Number
+      </div>
+    </div>
+					
+		<div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control"
+              name="description"
+              [(ngModel)]="model.description"
+              #description="ngModel"
+              required>
+      <div [hidden]="description.valid || description.pristine"
+            class="alert alert-danger">
+            Description is required
+      </div>
+    </div>
+                   
+    <div class="form-group">
+      <label for="data_matrix_code">QR/Data matrix Code</label>
+      <input type="text" class="form-control"
+              name="data_matrix_code"
+              [(ngModel)]="model.data_matrix_code"
+              #data_matrix_code="ngModel"
+              required>
+      <div [hidden]="data_matrix_code.valid || data_matrix_code.pristine"
+            class="alert alert-danger">
+            QR/Data matrix Code is required
+      </div>
+    </div>
+
+                    
+    <button type="submit"
+            [disabled]="!enable()"
+            class="btn btn-success">Save
+    </button>
+  </form>
+</div>

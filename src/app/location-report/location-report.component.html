@@ -1,0 +1,93 @@
+<div class="container">
+  <h3>Asset Audit</h3>
+  <hr>
+  <form (ngSubmit)="onSubmit();locationreportForm.reset();" #locationreportForm="ngForm">
+    <div class="form-group">
+      <label for="part_number">Site</label>
+      <select name="part_number"
+              class="form-control"
+              [(ngModel)]="model.part_number"
+              #part_number="ngModel"
+              (change)="onChangePartNumber($event)"
+              placeholder="All Parts"
+              required>
+        <option value='0' selected>All Parts</option>
+        <option *ngFor="let m of partsMap" [ngValue]="m">{{m["Site"]}}</option>
+      </select>
+      <div [hidden]="part_number.valid || part_number.pristine"
+            class="alert alert-danger">
+            Part Number is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location_id">Location</label>
+      <select name="location_id"
+              class="form-control"
+              [(ngModel)]="model.location_id"
+              #location_id="ngModel"
+              (change)="onChangeLocation($event)"
+              placeholder="All Locations"
+              required>
+        <option value='0' selected>All Location</option>
+        <option *ngFor="let m of locationMap" [ngValue]="m">{{m["Location"]}}</option>
+      </select>
+      <div [hidden]="location_id.valid || location_id.pristine"
+            class="alert alert-danger">
+            Location Id is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location_id">Sub Location</label>
+      <select name="location_id"
+              class="form-control"
+              [(ngModel)]="model.location_id"
+              #location_id="ngModel"
+              (change)="onChangeLocation($event)"
+              placeholder="All Locations"
+              required>
+        <option value='0' selected>All Location</option>
+        <option *ngFor="let m of locationMap" [ngValue]="m">{{m["Location"]}}</option>
+      </select>
+      <div [hidden]="location_id.valid || location_id.pristine"
+            class="alert alert-danger">
+            Location Id is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+    <!-- <button type="button" class="btn btn-primary" (click)="onExportToCSV()">Export to CSV</button> -->
+  </form>
+
+    <form class="form-vertical">
+      <table class="table table-bordered table-striped table-highlight;" *ngIf="this.finishedGoods != null">
+        <thead style="text-align: center;">
+        <th>Finished Goods Barcode</th>
+        <th>Part Name</th>
+        <th>Location</th>
+        <th>Delivered</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of finishedGoods; let idx = index;">
+          <td>
+            {{data.barcode }}
+          </td>
+          <td>
+            {{data.part.part_number }}
+          </td>
+          <td>
+            {{ data.location_id.display_name }}
+          </td>
+          <td>
+            {{data.delivered}}
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <div class="form-group" *ngIf="this.finishedGoods == null">
+
+      <!-- <label for="part">Finished goods are not yet associated with any location</label> -->
+  </div>
+</div>

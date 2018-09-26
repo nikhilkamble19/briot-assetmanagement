@@ -1,0 +1,50 @@
+<div class="container">
+  <h3>FG Barcode Generation</h3>
+  <hr>
+  <form (ngSubmit)="onSubmit();fgbarcodeForm.reset();" #fgbarcodeForm="ngForm">
+
+    <div class="form-group">
+      <label for="part_number">Part Number</label>
+      <select name="part_number"
+              class="form-control"
+              [(ngModel)]="model.part_number"
+              #part_number="ngModel"
+              (change)="onChangePartNumber($event)"
+              required>
+              <option *ngFor="let m of partsMap" [ngValue]="m">{{m.part_number}}</option>
+      </select>
+      <div [hidden]="part_number.valid || part_number.pristine"
+            class="alert alert-danger">
+            Part Number is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Pack Quantity</label>
+      <input type="text" class="form-control"
+              name="quantity"
+              [(ngModel)]="model.quantity"
+              #quantity="ngModel"
+              required>
+      <div [hidden]="quantity.valid || quantity.pristine"
+            class="alert alert-danger">
+            Pack Quantity is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="eachPackQuantity">Quantity in Each Pack</label>
+      <input type="text" class="form-control"
+              name="eachPackQuantity"
+              [(ngModel)]="model.eachPackQuantity"
+              #eachPackQuantity="ngModel"
+              required>
+              <div [hidden]="eachPackQuantity.valid || eachPackQuantity.pristine"
+                    class="alert alert-danger">
+                    Quantityin Each Pack is required
+              </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+  </form>
+</div>

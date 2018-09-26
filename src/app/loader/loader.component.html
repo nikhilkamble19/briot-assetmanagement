@@ -1,0 +1,33 @@
+<div class="container">
+  <h3>Loader</h3>
+  <hr>
+  <form (ngSubmit)="onSumbit();" #pickingForm="ngForm">
+
+    <div class="form-group">
+      <label for="display_name">Select Pick List</label>
+      <select name="display_name"
+              class="form-control"
+              [(ngModel)]="model.display_name"
+              #display_name="ngModel"
+              (change)="onChangePartNumber($event)"
+              required>
+
+              <option *ngFor="let m of picklistMap" [ngValue]="m">{{m.display_name}}</option>
+      </select>
+      <div [hidden]="display_name.valid || display_name.pristine"
+            class="alert alert-danger">
+            Picklist is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="scanbarcode">Please Scan Location</label>
+      <input type="text" class="form-control"
+              name="scanbarcode"
+              [(ngModel)]="model.scanbarcode"
+              #scanbarcode="ngModel"
+              required>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

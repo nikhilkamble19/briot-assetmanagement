@@ -1,0 +1,39 @@
+<div class="container">
+  <h3>User arrived in branch (Recent on Top)</h3>
+  <hr>
+  <form class="form-vertical">
+    <table class="table table-bordered table-striped table-highlight;">
+      <thead>
+        <th>Barcode</th>
+        <th>Part Name</th>
+        <th></th>
+        <th>Location</th>
+        <th>Id</th>
+        <th>Delivered</th>
+            <!-- <th>Tag Counts</th> -->
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of finishedGoods; let idx = index;">
+          <td>
+            {{data.barcode }}
+          </td>
+          <td>
+            {{data.part.part_name }}
+          </td>
+          <td>
+            {{data.part.part_name }}
+          </td>
+          <td>
+            {{data._id }}
+          </td>
+          <td>
+            {{data.location_id}}
+          </td>
+          <td>
+            {{data.delivered}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>
